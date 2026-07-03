@@ -26,9 +26,11 @@ body.reading{ --bg:#f4ecdb; --panel:#efe6d2; --ink:#2c2418; --muted:#6b6350; --a
   padding:.7rem clamp(1rem,4vw,2rem);background:linear-gradient(180deg,var(--bg),transparent);
   z-index:50;font-family:'Be Vietnam Pro',sans-serif}
 #hud .brand{font-family:'Playfair Display',serif;font-weight:700;letter-spacing:.03em;color:var(--accent);font-size:1rem}
-#hud button{background:none;border:1px solid var(--muted);color:var(--ink);border-radius:999px;
-  padding:.35rem .9rem;font:inherit;font-size:.8rem;cursor:pointer;opacity:.85}
-#hud button:hover{border-color:var(--accent);color:var(--accent);opacity:1}
+#hud button,#hud a{background:none;border:1px solid var(--muted);color:var(--ink);border-radius:999px;
+  padding:.35rem .9rem;font:inherit;font-size:.8rem;cursor:pointer;opacity:.85;
+  text-decoration:none;display:inline-block;font-family:'Be Vietnam Pro',sans-serif}
+#hud button:hover,#hud a:hover{border-color:var(--accent);color:var(--accent);opacity:1}
+#hud a#btnSlide{border-color:var(--accent);color:var(--accent)}
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;
   text-align:center;padding:5rem 1.4rem 3rem;
   background:radial-gradient(circle at 50% 30%,rgba(40,52,90,.5),transparent 60%)}
@@ -76,6 +78,7 @@ footer{text-align:center;color:var(--muted);font-family:'Be Vietnam Pro',sans-se
 <header id="hud">
   <span class="brand">FOXAI Compliance</span>
   <span>
+    <a id="btnSlide" href="AI_Compliance_slide.html">✦ Bản Slide</a>
     <button id="btnRead">Chế độ đọc</button>
     <button id="btnToc">☰ Mục lục</button>
   </span>
@@ -96,6 +99,7 @@ footer{text-align:center;color:var(--muted);font-family:'Be Vietnam Pro',sans-se
     <li><a href="#sec2">2. Yêu cầu tuân thủ trước khi triển khai (Sandbox)</a></li>
     <li><a href="#sec3">3. Yêu cầu tuân thủ khi vận hành diện rộng</a></li>
     <li><a href="#sec4">4. Quy trình xử lý sự cố & Lời khuyên</a></li>
+    <li><a href="#sec5">5. Văn bản pháp lý nguồn</a></li>
   </ol>
 </nav>
 
@@ -206,6 +210,19 @@ footer{text-align:center;color:var(--muted);font-family:'Be Vietnam Pro',sans-se
 
 <div class="verse">
   <strong>💡 Lời khuyên chiến lược cho FOXAI:</strong> Do đặc thù hệ thống sử dụng cốt lõi là "nguồn dữ liệu không kiểm soát", FOXAI nên đặc biệt ưu tiên tích hợp module Giải trình tính minh bạch (XAI - Explainable AI) và thiết lập bộ tiêu chí chất lượng dữ liệu cực kỳ nghiêm ngặt ngay từ khâu thiết kế kiến trúc ban đầu (áp dụng nguyên tắc <strong>Compliance-by-Design</strong>). Giải pháp này sẽ giúp tối ưu hóa khả năng kiểm soát và giảm thiểu tối đa các rủi ro pháp lý liên quan đến nghĩa vụ bồi thường thiệt hại trong tương lai.
+</div>
+
+<h2 id="sec5" class="sec-title">5. VĂN BẢN PHÁP LÝ NGUỒN</h2>
+<p>Các văn bản quy phạm pháp luật được tham chiếu và trích dẫn trong báo cáo này. Nhấn để mở hoặc tải về bản đầy đủ:</p>
+
+<div class="item-block">
+  <div class="item-title"><a href="Luat-134-Luat-Tri-tue-nhan-tao.pdf" target="_blank" rel="noopener" style="color:var(--accent)">📄 Luật số 134 — Luật Trí tuệ nhân tạo (PDF)</a></div>
+  <p>Văn bản luật khung điều chỉnh hoạt động nghiên cứu, phát triển và cung cấp hệ thống trí tuệ nhân tạo.</p>
+</div>
+
+<div class="item-block">
+  <div class="item-title"><a href="QD-33-2026-QD-TTg-Danh-muc-AI-rui-ro-cao.pdf" target="_blank" rel="noopener" style="color:var(--accent)">📄 Quyết định 33/2026/QĐ-TTg — Danh mục AI rủi ro cao (PDF)</a></div>
+  <p>Quyết định của Thủ tướng Chính phủ ban hành danh mục các hệ thống AI rủi ro cao, làm căn cứ phân loại hệ thống của FOXAI.</p>
 </div>
 </main>
 

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Báo Cáo Tuân Thủ Pháp Lý AI — FOXAI</title>
+  <meta name="description" content="Landing page tài liệu AI Compliance của FOXAI cho hệ thống AI giáo dục rủi ro cao." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+
+    :root {
+      --bg:#07080c;
+      --bg-soft:#111522;
+      --surface:rgba(13,15,21,.78);
+      --surface-solid:#0d0f15;
+      --text:#ece6d8;
+      --muted:#a8a093;
+      --muted-2:#7f786e;
+      --line:rgba(217,169,78,.18);
+      --primary:#d9a94e;
+      --primary-2:#f2c46c;
+      --cyan:#bba46f;
+      --green:#8fc9a4;
+      --orange:#d9a94e;
+      --red:#d66d5f;
+      --purple:#9387bd;
+      --glow:#28345a;
+      --shadow:0 28px 92px rgba(0,0,0,.42);
+      --shadow-soft:0 18px 56px rgba(0,0,0,.24);
+      --radius-xl:30px;
+      --radius-lg:22px;
+      --radius-md:16px;
+      --container:1180px;
+      --toc-width:300px;
+    }
+
+    html[data-theme="light"] {
+      --bg:#f4ecdb;
+      --bg-soft:#efe6d2;
+      --surface:rgba(255,250,241,.82);
+      --surface-solid:#fffaf1;
+      --text:#2c2418;
+      --muted:#6b6350;
+      --muted-2:#847761;
+      --line:rgba(154,107,31,.22);
+      --primary:#9a6b1f;
+      --primary-2:#6f4d18;
+      --cyan:#b38a47;
+      --green:#3b7a57;
+      --orange:#b47422;
+      --red:#a9443b;
+      --purple:#6c5b94;
+      --glow:#d4c49f;
+      --shadow:0 24px 72px rgba(65,44,14,.16);
+      --shadow-soft:0 12px 36px rgba(92,64,21,.12);
+    }
+
+    html[data-theme="dark"] {
+      --bg:#07080c;
+      --bg-soft:#111522;
+      --surface:rgba(13,15,21,.78);
+      --surface-solid:#0d0f15;
+      --text:#ece6d8;
+      --muted:#a8a093;
+      --muted-2:#7f786e;
+      --line:rgba(217,169,78,.18);
+      --primary:#d9a94e;
+      --primary-2:#f2c46c;
+      --cyan:#bba46f;
+      --green:#8fc9a4;
+      --orange:#d9a94e;
+      --red:#d66d5f;
+      --purple:#9387bd;
+      --glow:#28345a;
+      --shadow:0 28px 92px rgba(0,0,0,.42);
+      --shadow-soft:0 18px 56px rgba(0,0,0,.24);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      overflow-x:hidden;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 50% 10%, color-mix(in srgb, var(--glow) 58%, transparent), transparent 34rem),
+        radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--primary) 10%, transparent), transparent 18rem),
+        linear-gradient(180deg,var(--bg),var(--bg-soft));
+      font-family:'Lora', Georgia, serif;
+      font-size:1.08rem;
+      line-height:1.82;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    body.read-mode{
+      --container:900px;
+      --bg:#f4ecdb;
+      --bg-soft:#efe6d2;
+      --surface:rgba(255,250,241,.88);
+      --surface-solid:#fffaf1;
+      --text:#2c2418;
+      --muted:#6b6350;
+      --muted-2:#847761;
+      --line:rgba(154,107,31,.22);
+      --primary:#9a6b1f;
+      --primary-2:#6f4d18;
+      letter-spacing:.005em;
+    }
+
+    body.read-mode .decor-orb,
+    body.read-mode .mesh,
+    body.read-mode .hero-visual,
+    body.read-mode .floating-actions .label,
+    body.read-mode .stats-strip,
+    body.read-mode .compliance-dashboard{display:none}
+    body.read-mode .hero-grid,
+    body.read-mode .content-layout{grid-template-columns:1fr}
+    body.read-mode .toc-panel{position:static;margin-bottom:20px}
+    body.read-mode .section{font-size:1.05rem;line-height:1.9}
+
+    ::selection{color:var(--bg);background:var(--primary)}
+
+    .progress-wrap{position:fixed;inset:0 0 auto 0;height:3px;z-index:9999;background:transparent}
+    .progress-bar{height:100%;width:0%;background:var(--primary);box-shadow:0 0 18px color-mix(in srgb,var(--primary) 70%,transparent);transition:width .08s linear}
+
+    .mesh{pointer-events:none;position:fixed;inset:0;opacity:.22;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(to bottom,black,transparent 78%);z-index:-3}
+    .decor-orb{position:fixed;border-radius:999px;filter:blur(20px);opacity:.18;z-index:-2;animation:floatOrb 14s ease-in-out infinite}
+    .orb-1{width:360px;height:360px;background:var(--glow);top:90px;left:-130px}
+    .orb-2{width:280px;height:280px;background:var(--primary);bottom:16%;right:-100px;animation-delay:-6s}
+    @keyframes floatOrb{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(24px,-28px,0) scale(1.06)}}
+
+    .container{width:min(var(--container),calc(100% - 40px));margin:0 auto}
+
+    .nav{position:sticky;top:0;z-index:1000;backdrop-filter:blur(18px);background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 92%,transparent),color-mix(in srgb,var(--bg) 72%,transparent));border-bottom:1px solid var(--line)}
+    .nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-family:'Playfair Display',Georgia,serif;font-weight:700;letter-spacing:.01em;font-size:1.12rem;white-space:nowrap}
+    .brand-mark{width:42px;height:42px;border-radius:999px;display:grid;place-items:center;color:var(--bg);background:var(--primary);box-shadow:0 0 0 1px color-mix(in srgb,var(--primary) 35%,transparent),0 14px 34px color-mix(in srgb,var(--primary) 18%,transparent)}
+
+    .nav-links{display:flex;align-items:center;gap:6px;padding:6px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface-solid) 70%,transparent)}
+    .nav-links a{font-family:'Be Vietnam Pro',system-ui,sans-serif;color:var(--muted);text-decoration:none;font-size:.78rem;font-weight:600;padding:8px 11px;border-radius:999px;transition:.2s ease;letter-spacing:.02em}
+    .nav-links a:hover,.nav-links a.active{color:var(--bg);background:var(--primary);box-shadow:0 10px 22px color-mix(in srgb,var(--primary) 20%,transparent)}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+
+    .btn{border:1px solid var(--line);cursor:pointer;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:600;border-radius:999px;padding:10px 15px;color:var(--text);background:color-mix(in srgb,var(--surface-solid) 74%,transparent);box-shadow:0 8px 24px rgba(0,0,0,.10);display:inline-flex;align-items:center;gap:8px;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;white-space:nowrap;text-decoration:none}
+    .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);border-color:color-mix(in srgb,var(--primary) 48%,var(--line));color:var(--primary)}
+    .btn.primary{color:var(--bg);border-color:transparent;background:var(--primary)}
+    .btn.primary:hover{color:var(--bg);filter:brightness(1.05)}
+
+    .hero{padding:86px 0 56px;position:relative}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);gap:38px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:0;border-radius:0;color:var(--primary);background:transparent;border:0;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:700;font-size:.76rem;text-transform:uppercase;letter-spacing:.24em;margin-bottom:20px}
+    .pulse-dot{width:8px;height:8px;border-radius:999px;background:var(--red);box-shadow:0 0 0 0 color-mix(in srgb,var(--red) 55%,transparent);animation:pulse 1.7s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--red) 55%,transparent)}70%{box-shadow:0 0 0 12px transparent}100%{box-shadow:0 0 0 0 transparent}}
+
+    h1,h2,h3{font-family:'Playfair Display',Georgia,serif;color:var(--text)}
+    h1{margin:0;font-size:clamp(2.6rem,6vw,5.2rem);line-height:1.04;letter-spacing:-.055em;max-width:900px;font-weight:700}
+    .gradient-text{background:none;-webkit-background-clip:initial;background-clip:initial;color:var(--primary)}
+    .hero-lead{margin:24px 0 0;max-width:760px;color:var(--muted);font-size:clamp(1.02rem,1.35vw,1.18rem);line-height:1.85;font-style:italic}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .risk-pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+    .risk-pill{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface-solid) 55%,transparent);color:var(--muted);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:600;font-size:.82rem}
+
+    .hero-visual{position:relative;min-height:520px;border-radius:var(--radius-xl);overflow:hidden;background:linear-gradient(145deg,color-mix(in srgb,var(--primary) 12%,transparent),color-mix(in srgb,var(--glow) 18%,transparent)),var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(18px)}
+    .hero-visual::before{content:"";position:absolute;inset:-2px;background:radial-gradient(circle at 30% 18%,color-mix(in srgb,var(--primary) 25%,transparent),transparent 30%),radial-gradient(circle at 74% 82%,color-mix(in srgb,var(--glow) 34%,transparent),transparent 34%);z-index:0}
+    .dashboard-card{position:absolute;z-index:1;border-radius:24px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface-solid) 84%,transparent);backdrop-filter:blur(16px);box-shadow:0 18px 48px rgba(0,0,0,.22);padding:18px}
+    .dash-main{left:28px;right:28px;top:28px;min-height:230px}
+    .dash-small-1{left:28px;bottom:30px;width:46%;min-height:180px}
+    .dash-small-2{right:28px;bottom:30px;width:42%;min-height:210px}
+    .dash-title{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:700;letter-spacing:.01em}
+    .badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:7px 10px;font-size:.72rem;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:700;color:var(--bg);background:linear-gradient(135deg,var(--red),var(--primary))}
+    .meter{margin-top:22px;height:12px;border-radius:999px;background:color-mix(in srgb,var(--primary) 10%,transparent);overflow:hidden;border:1px solid var(--line)}
+    .meter span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--green),var(--primary),var(--red));width:87%}
+    .risk-score{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;margin-top:18px}
+    .risk-score strong{font-family:'Playfair Display',Georgia,serif;font-size:3.35rem;letter-spacing:-.06em;line-height:1;color:var(--primary)}
+    .risk-score small{color:var(--muted);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:500;line-height:1.5}
+    .mini-list{display:grid;gap:10px;margin-top:18px}
+    .mini-list div{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:500;font-size:.86rem}
+    .status-dot{width:10px;height:10px;border-radius:999px;background:var(--green)}
+    .status-dot.warn{background:var(--primary)}.status-dot.danger{background:var(--red)}
+    .radial{width:104px;height:104px;border-radius:999px;display:grid;place-items:center;margin:20px auto 12px;background:conic-gradient(var(--primary) 0 72%,color-mix(in srgb,var(--primary) 14%,transparent) 72% 100%);position:relative}
+    .radial::after{content:"";position:absolute;inset:12px;border-radius:inherit;background:var(--surface-solid)}
+    .radial span{position:relative;z-index:2;font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:1.25rem;color:var(--primary)}
+    .shield{font-size:3.8rem;text-align:center;margin-top:16px;filter:drop-shadow(0 14px 20px color-mix(in srgb,var(--primary) 20%,transparent))}
+
+    .stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+    .stat-card{padding:20px;border-radius:22px;border:1px solid var(--line);background:var(--surface);backdrop-filter:blur(16px);box-shadow:0 10px 30px rgba(0,0,0,.12)}
+    .stat-card strong{display:block;font-family:'Playfair Display',Georgia,serif;font-size:1.85rem;letter-spacing:-.04em;margin-bottom:6px;color:var(--primary)}
+    .stat-card span{color:var(--muted);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:500;font-size:.88rem;line-height:1.5}
+
+    .content-layout{display:grid;grid-template-columns:var(--toc-width) minmax(0,1fr);gap:28px;align-items:start;padding:34px 0 80px}
+    .toc-panel{position:sticky;top:96px;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface);backdrop-filter:blur(18px);box-shadow:var(--shadow-soft);padding:18px}
+    .toc-title{display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:700;margin-bottom:12px;letter-spacing:.02em;color:var(--text)}
+    .toc-panel nav{display:grid;gap:4px}
+    .toc-panel a{text-decoration:none;color:var(--muted);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:500;padding:10px 12px;border-radius:13px;line-height:1.35;transition:.2s ease;border:1px solid transparent;font-size:.9rem}
+    .toc-panel a:hover,.toc-panel a.active{color:var(--primary);background:color-mix(in srgb,var(--primary) 10%,transparent);border-color:color-mix(in srgb,var(--primary) 18%,transparent)}
+    .toc-note{margin-top:14px;padding:13px;border-radius:16px;color:var(--muted);background:color-mix(in srgb,var(--primary) 8%,transparent);border:1px solid color-mix(in srgb,var(--primary) 18%,transparent);font-size:.85rem;line-height:1.6;font-family:'Lora',Georgia,serif;font-style:italic}
+
+    main{display:grid;gap:28px}
+    .section{position:relative;border:1px solid var(--line);border-radius:var(--radius-xl);background:var(--surface);backdrop-filter:blur(18px);box-shadow:var(--shadow-soft);padding:clamp(24px,4vw,42px);overflow:hidden;scroll-margin-top:96px}
+    .section::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--primary),transparent);opacity:.9}
+    .section-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:24px}
+    .icon-box{flex:0 0 auto;width:54px;height:54px;border-radius:18px;display:grid;place-items:center;color:var(--bg);font-size:1.45rem;background:var(--primary);box-shadow:0 14px 28px color-mix(in srgb,var(--primary) 18%,transparent)}
+    .section-kicker{color:var(--primary);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:.74rem;margin-bottom:9px}
+    h2{margin:0;font-size:clamp(1.8rem,3vw,2.7rem);letter-spacing:-.035em;line-height:1.12;font-weight:700}
+    h3{margin:0 0 12px;font-size:1.26rem;letter-spacing:-.015em;font-weight:700;color:var(--primary)}
+    p{color:var(--muted);line-height:1.82}
+    strong{color:var(--text)}
+
+    .lead-box{padding:22px 24px;border-radius:6px;background:color-mix(in srgb,var(--surface-solid) 70%,transparent);border:1px solid var(--line);border-left:3px solid var(--primary);color:var(--text);line-height:1.9;font-weight:500;font-style:italic;box-shadow:0 10px 26px rgba(0,0,0,.12)}
+    .lead-box strong{color:var(--primary)}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+    .risk-card,.compliance-card,.simple-card{padding:20px;border-radius:22px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface-solid) 72%,transparent);box-shadow:0 12px 28px rgba(0,0,0,.12);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;min-height:100%}
+    .risk-card:hover,.compliance-card:hover,.simple-card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--primary) 38%,var(--line));box-shadow:0 18px 42px rgba(0,0,0,.18)}
+    .risk-card .risk-icon{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;margin-bottom:14px;background:color-mix(in srgb,var(--red) 13%,transparent);color:var(--red);font-size:1.3rem}
+    .risk-card p,.compliance-card p,.simple-card p{margin-bottom:0}
+    .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .tag{display:inline-flex;align-items:center;border-radius:999px;padding:7px 10px;color:var(--muted);background:color-mix(in srgb,var(--primary) 8%,transparent);border:1px solid color-mix(in srgb,var(--primary) 16%,transparent);font-size:.75rem;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:600}
+
+    .timeline{position:relative;display:grid;gap:16px;margin-top:12px}
+    .timeline::before{content:"";position:absolute;left:22px;top:18px;bottom:18px;width:2px;background:linear-gradient(var(--primary),color-mix(in srgb,var(--primary) 60%,transparent));opacity:.55}
+    .timeline-item{display:grid;grid-template-columns:46px 1fr;gap:14px;position:relative}
+    .timeline-number{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;color:var(--bg);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:700;background:var(--primary);box-shadow:0 10px 24px color-mix(in srgb,var(--primary) 18%,transparent);z-index:1}
+    .timeline-content{padding:18px 20px;border-radius:20px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface-solid) 72%,transparent)}
+    .timeline-content p{margin:0}
+
+    .checklist{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+    .checklist li{display:grid;grid-template-columns:28px 1fr;gap:11px;align-items:start;padding:14px;border-radius:18px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface-solid) 72%,transparent);color:var(--muted);line-height:1.68;font-weight:500}
+    .check{width:28px;height:28px;border-radius:999px;display:grid;place-items:center;color:var(--bg);background:var(--primary);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:.8rem;font-weight:700}
+
+    .compliance-card .card-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .card-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:15px;background:color-mix(in srgb,var(--primary) 12%,transparent);color:var(--primary);font-size:1.2rem}
+    .notice{display:grid;grid-template-columns:54px 1fr;gap:16px;padding:20px;border-radius:24px;background:color-mix(in srgb,var(--red) 10%,transparent);border:1px solid color-mix(in srgb,var(--red) 24%,transparent);margin-top:18px}
+    .notice .notice-icon{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;color:var(--bg);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:700;font-size:1rem;background:linear-gradient(135deg,var(--red),var(--primary))}
+    .notice p{margin:0;color:var(--text);font-weight:600}
+
+    .compliance-dashboard{margin-top:20px;display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+    .matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .matrix-cell{border-radius:16px;min-height:76px;display:flex;align-items:end;justify-content:space-between;padding:12px;color:var(--bg);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-weight:700;background:linear-gradient(135deg,var(--primary),var(--cyan))}
+    .matrix-cell:nth-child(2),.matrix-cell:nth-child(4){background:linear-gradient(135deg,var(--green),var(--cyan))}
+    .matrix-cell:nth-child(3),.matrix-cell:nth-child(5){background:linear-gradient(135deg,var(--primary),var(--red))}
+    .matrix-cell:nth-child(6){background:linear-gradient(135deg,var(--red),var(--purple))}
+
+    .table-wrap{overflow-x:auto;border-radius:22px;border:1px solid var(--line)}
+    table{width:100%;border-collapse:collapse;min-width:780px;background:color-mix(in srgb,var(--surface-solid) 76%,transparent)}
+    th,td{text-align:left;padding:16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6}
+    th{color:var(--primary);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;background:color-mix(in srgb,var(--primary) 8%,transparent)}
+    td{color:var(--muted);font-weight:500}
+    tr:last-child td{border-bottom:0}
+
+    .quote{margin:0;padding:24px;border-radius:6px;background:color-mix(in srgb,var(--surface-solid) 70%,transparent);border:1px solid var(--line);border-left:3px solid var(--primary);font-size:1.1rem;line-height:1.85;font-weight:500;color:var(--text);font-style:italic}
+    .footer{padding:42px 0 64px;color:var(--muted);text-align:center;border-top:1px solid var(--line);font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:.85rem}
+    .footer strong{color:var(--primary);font-family:'Playfair Display',Georgia,serif;font-size:1.05rem}
+
+    .floating-actions{position:fixed;right:18px;bottom:18px;z-index:999;display:grid;gap:10px}
+    .float-btn{width:48px;height:48px;border-radius:999px;border:1px solid var(--line);display:grid;place-items:center;cursor:pointer;color:var(--bg);background:var(--primary);box-shadow:0 16px 34px color-mix(in srgb,var(--primary) 22%,transparent);font-size:1.1rem}
+    .label{position:absolute;right:56px;top:50%;transform:translateY(-50%);background:var(--surface-solid);color:var(--muted);border:1px solid var(--line);padding:8px 10px;border-radius:999px;white-space:nowrap;font-family:'Be Vietnam Pro',system-ui,sans-serif;font-size:.75rem;font-weight:600;opacity:0;pointer-events:none;transition:.2s ease}
+    .float-item{position:relative}.float-item:hover .label{opacity:1}
+    .mobile-toc-toggle{display:none}
+
+    @media (max-width:1080px){.hero-grid,.content-layout,.compliance-dashboard{grid-template-columns:1fr}.toc-panel{position:relative;top:auto}.stats-strip,.grid-3{grid-template-columns:repeat(2,1fr)}.nav-links{display:none}}
+    @media (max-width:760px){body{font-size:1rem}.container{width:min(100% - 28px,var(--container))}.nav-inner{height:auto;padding:12px 0;align-items:flex-start}.brand span:last-child{display:none}.nav-actions{gap:8px}.btn{padding:10px 12px;font-size:.82rem}.btn .btn-text{display:none}.hero{padding-top:46px}.hero-visual{min-height:430px}.dash-main{left:16px;right:16px;top:16px}.dash-small-1,.dash-small-2{left:16px;right:16px;width:auto}.dash-small-1{bottom:152px;min-height:128px}.dash-small-2{bottom:16px;min-height:120px}.dash-small-2 .shield,.dash-small-2 p{display:none}.stats-strip,.grid-2,.grid-3,.matrix{grid-template-columns:1fr}.section{border-radius:24px}.section-head{flex-direction:column}.notice{grid-template-columns:1fr}.timeline::before{display:none}.timeline-item{grid-template-columns:1fr}.mobile-toc-toggle{display:inline-flex}.toc-panel nav{max-height:0;overflow:hidden;transition:max-height .25s ease}.toc-panel.open nav{max-height:620px}}
+    @media print{.nav,.floating-actions,.progress-wrap,.mesh,.decor-orb,.hero-visual,.toc-panel,.hero-actions{display:none!important}body{background:white;color:#111}.container,body.read-mode .container{width:100%}.content-layout,.hero-grid{display:block}.section{box-shadow:none;border:1px solid #ddd;break-inside:avoid;margin-bottom:18px}}
+
+  </style>
+</head>
+<body>
+  <div class="progress-wrap" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+  <div class="mesh" aria-hidden="true"></div>
+  <div class="decor-orb orb-1" aria-hidden="true"></div>
+  <div class="decor-orb orb-2" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="FOXAI AI Compliance">
+        <span class="brand-mark">⚡</span>
+        <span>FOXAI Compliance</span>
+      </a>
+      <nav class="nav-links" aria-label="Điều hướng nhanh">
+        <a href="#overview">Tổng quan</a>
+        <a href="#risks">Rủi ro</a>
+        <a href="#sandbox">Sandbox</a>
+        <a href="#operation">Vận hành</a>
+        <a href="#incident">Sự cố</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn" href="index.html" aria-label="Mở bản báo cáo đầy đủ">📄 <span class="btn-text">Báo cáo đầy đủ</span></a>
+        <button class="btn" id="readModeBtn" type="button" aria-label="Bật chế độ đọc">📖 <span class="btn-text">Chế độ đọc</span></button>
+        <button class="btn" id="themeBtn" type="button" aria-label="Đổi giao diện sáng tối">🌙 <span class="btn-text">Dark</span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow"><span class="pulse-dot"></span> Tài liệu AI Compliance nội bộ</div>
+        <h1>Quản trị rủi ro cho <span class="gradient-text">AI giáo dục</span> của FOXAI</h1>
+        <p class="hero-lead">
+          Landing page tóm tắt yêu cầu tuân thủ cho hệ thống AI cung cấp nội dung tự học theo chương trình giáo dục, trong bối cảnh hệ thống được xác định là nhóm rủi ro cao và có sử dụng nguồn dữ liệu không kiểm soát.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#overview">Bắt đầu đọc ↓</a>
+          <a class="btn" href="#checklist">Xem checklist</a>
+        </div>
+        <div class="risk-pill-row" aria-label="Nhãn rủi ro">
+          <span class="risk-pill">⚠️ Rủi ro cao</span>
+          <span class="risk-pill">🎓 Giáo dục</span>
+          <span class="risk-pill">🧒 Dữ liệu trẻ em</span>
+          <span class="risk-pill">🛡️ Human-in-the-loop</span>
+        </div>
+      </div>
+
+      <aside class="hero-visual" aria-label="Minh họa dashboard tuân thủ">
+        <div class="dashboard-card dash-main">
+          <div class="dash-title">
+            <span>AI Risk Classification</span>
+            <span class="badge">⚠ High Risk</span>
+          </div>
+          <div class="meter"><span></span></div>
+          <div class="risk-score">
+            <div>
+              <strong>87%</strong>
+              <small>mức cần kiểm soát trước khi mở rộng</small>
+            </div>
+            <small>Education AI<br/>Uncontrolled Data Source</small>
+          </div>
+          <div class="mini-list">
+            <div><span>Data Governance</span><span class="status-dot warn"></span></div>
+            <div><span>Model Transparency</span><span class="status-dot"></span></div>
+            <div><span>Security Logging</span><span class="status-dot danger"></span></div>
+          </div>
+        </div>
+        <div class="dashboard-card dash-small-1">
+          <div class="dash-title"><span>Compliance Readiness</span></div>
+          <div class="radial"><span>72%</span></div>
+          <p style="margin: 0; text-align:center; font-size: .88rem;">Cần hoàn thiện hồ sơ, DPIA và cơ chế giám sát.</p>
+        </div>
+        <div class="dashboard-card dash-small-2">
+          <div class="dash-title"><span>Safety Layer</span></div>
+          <div class="shield">🛡️</div>
+          <p style="margin: 0; text-align:center; font-size: .88rem;">XAI · HITL · Audit Log · Data Quality</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="container stats-strip" aria-label="Chỉ số nổi bật">
+      <div class="stat-card"><strong>01</strong><span>Nhóm rủi ro cao trong lĩnh vực giáo dục.</span></div>
+      <div class="stat-card"><strong>72h</strong><span>Thời hạn báo cáo sơ bộ khi có sự cố nghiêm trọng.</span></div>
+      <div class="stat-card"><strong>12+</strong><span>Tháng logging tập trung cho truy vết và kiểm toán.</span></div>
+      <div class="stat-card"><strong>HITL</strong><span>Con người phải có quyền giám sát, ghi đè và tạm dừng.</span></div>
+    </div>
+  </section>
+
+  <div class="container content-layout">
+    <aside class="toc-panel" id="tocPanel">
+      <div class="toc-title">
+        <span>📌 Mục lục</span>
+        <button class="btn mobile-toc-toggle" id="tocToggle" type="button">Mở</button>
+      </div>
+      <nav id="tocNav">
+        <a href="#overview">1. Tổng quan phân loại</a>
+        <a href="#risks">2. Rủi ro chính</a>
+        <a href="#sandbox">3. Trước thí điểm Sandbox</a>
+        <a href="#operation">4. Triển khai diện rộng</a>
+        <a href="#data-security">5. Dữ liệu & an ninh</a>
+        <a href="#transparency">6. Minh bạch & kiểm soát</a>
+        <a href="#incident">7. Xử lý sự cố</a>
+        <a href="#checklist">8. Checklist hành động</a>
+        <a href="#sources">9. Văn bản pháp lý nguồn</a>
+      </nav>
+      <div class="toc-note">
+        Lưu ý: Đây là tài liệu định hướng tuân thủ nội bộ. Khi triển khai thực tế, FOXAI cần rà soát lại với bộ phận pháp chế và cơ quan quản lý chuyên ngành.
+      </div>
+    </aside>
+
+    <main>
+      <section class="section" id="overview">
+        <div class="section-head">
+          <div class="icon-box">🎓</div>
+          <div>
+            <div class="section-kicker">Tổng quan</div>
+            <h2>Hệ thống AI giáo dục cần được quản trị như một sản phẩm rủi ro cao</h2>
+          </div>
+        </div>
+        <div class="lead-box">
+          Hệ thống AI cung cấp nội dung tự học theo chương trình giáo dục sử dụng <strong>nguồn dữ liệu không kiểm soát</strong> có nguy cơ tạo ra nội dung sai lệch, không phù hợp độ tuổi, vi phạm quyền riêng tư hoặc bị thao túng bởi tấn công dữ liệu. Vì vậy, FOXAI cần áp dụng tư duy <strong>Compliance-by-Design</strong> ngay từ giai đoạn nghiên cứu, thử nghiệm đến vận hành chính thức.
+        </div>
+        <div class="grid-3" style="margin-top: 18px;">
+          <div class="simple-card">
+            <h3>Phạm vi hệ thống</h3>
+            <p>Cung cấp nội dung tự học, gợi ý học tập và giải thích kiến thức theo chương trình giáo dục.</p>
+          </div>
+          <div class="simple-card">
+            <h3>Đặc thù rủi ro</h3>
+            <p>Nguồn dữ liệu không kiểm soát có thể chứa sai lệch, thiên lệch, độc hại hoặc chưa được thẩm định.</p>
+          </div>
+          <div class="simple-card">
+            <h3>Nguyên tắc triển khai</h3>
+            <p>Không mở rộng khi chưa có hồ sơ kỹ thuật, kiểm soát dữ liệu, gắn nhãn AI và giám sát con người.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="risks">
+        <div class="section-head">
+          <div class="icon-box">⚠️</div>
+          <div>
+            <div class="section-kicker">Risk Map</div>
+            <h2>4 nhóm rủi ro trọng yếu FOXAI cần kiểm soát</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="risk-card">
+            <div class="risk-icon">🧠</div>
+            <h3>Nội dung sai lệch hoặc gây hại</h3>
+            <p>Dữ liệu đầu vào không được thẩm định có thể khiến AI tạo ra kiến thức sai, nội dung kỳ thị, phân biệt đối xử hoặc không phù hợp bản sắc văn hóa Việt Nam.</p>
+            <div class="tag-row"><span class="tag">Hallucination</span><span class="tag">Harmful Content</span><span class="tag">Culture Safety</span></div>
+          </article>
+          <article class="risk-card">
+            <div class="risk-icon">🧒</div>
+            <h3>Xâm phạm quyền riêng tư và trẻ em</h3>
+            <p>Nếu phục vụ học sinh, hệ thống có thể xử lý dữ liệu cá nhân nhạy cảm, hành vi học tập, năng lực, độ tuổi và thông tin liên quan đến trẻ em.</p>
+            <div class="tag-row"><span class="tag">Privacy</span><span class="tag">Child Safety</span><span class="tag">DPIA</span></div>
+          </article>
+          <article class="risk-card">
+            <div class="risk-icon">🛡️</div>
+            <h3>An ninh hệ thống</h3>
+            <p>Prompt injection, data poisoning hoặc thao túng nguồn tri thức có thể làm sai lệch kết quả học tập và ảnh hưởng đến niềm tin của người dùng.</p>
+            <div class="tag-row"><span class="tag">Prompt Injection</span><span class="tag">Data Poisoning</span><span class="tag">Audit</span></div>
+          </article>
+          <article class="risk-card">
+            <div class="risk-icon">⚖️</div>
+            <h3>Thiên lệch thuật toán</h3>
+            <p>Dữ liệu không kiểm soát có thể dẫn tới gợi ý học tập thiếu công bằng, thiên lệch theo vùng miền, giới tính, năng lực hoặc điều kiện tiếp cận giáo dục.</p>
+            <div class="tag-row"><span class="tag">Bias</span><span class="tag">Fairness</span><span class="tag">Inclusion</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="sandbox">
+        <div class="section-head">
+          <div class="icon-box">🧪</div>
+          <div>
+            <div class="section-kicker">Trước thí điểm</div>
+            <h2>Giai đoạn Sandbox: thử nghiệm có kiểm soát trước khi triển khai rộng</h2>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-number">1</div>
+            <div class="timeline-content">
+              <h3>Xác định cấp độ thử nghiệm</h3>
+              <p>Nếu hệ thống xử lý dữ liệu trẻ em hoặc kết nối với hạ tầng quan trọng, cần đánh giá khả năng thuộc cấp độ thử nghiệm cao hơn và chuẩn bị hồ sơ theo cơ quan có thẩm quyền.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-number">2</div>
+            <div class="timeline-content">
+              <h3>Lập hồ sơ đăng ký thử nghiệm</h3>
+              <p>Chuẩn bị đơn đề nghị, đề án thử nghiệm, mô tả hệ thống, mục tiêu, phạm vi người tham gia, phương án quản lý rủi ro và năng lực nhân sự, hạ tầng.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-number">3</div>
+            <div class="timeline-content">
+              <h3>Thiết lập bảo đảm tài chính</h3>
+              <p>Xem xét bảo hiểm trách nhiệm dân sự hoặc biện pháp bảo đảm tương đương do hệ thống có thể gây thiệt hại nếu tạo nội dung sai lệch ở quy mô lớn.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-number">4</div>
+            <div class="timeline-content">
+              <h3>Minh bạch với người tham gia</h3>
+              <p>Thông báo rõ hệ thống có sử dụng AI, phạm vi thử nghiệm, giới hạn của mô hình, rủi ro có thể phát sinh và kênh phản hồi khi phát hiện nội dung bất thường.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="operation">
+        <div class="section-head">
+          <div class="icon-box">🚀</div>
+          <div>
+            <div class="section-kicker">Vận hành chính thức</div>
+            <h2>Yêu cầu về hồ sơ, đánh giá phù hợp và quản trị vòng đời AI</h2>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="compliance-card">
+            <div class="card-top"><div class="card-icon">📄</div><h3>Tự đánh giá sự phù hợp</h3></div>
+            <p>Lập hồ sơ kỹ thuật và tự chịu trách nhiệm về kết quả đánh giá đáp ứng yêu cầu quản lý rủi ro, chất lượng dữ liệu và minh bạch.</p>
+          </article>
+          <article class="compliance-card">
+            <div class="card-top"><div class="card-icon">🆔</div><h3>Mã định danh hệ thống AI</h3></div>
+            <p>Thông báo kết quả phân loại rủi ro qua cổng một cửa về AI để phục vụ quản lý, truy vết và giám sát sau triển khai.</p>
+          </article>
+          <article class="compliance-card">
+            <div class="card-top"><div class="card-icon">🗂️</div><h3>System Card & Model Card</h3></div>
+            <p>Duy trì tài liệu mô tả kiến trúc, nguồn dữ liệu, giới hạn mô hình, kịch bản kiểm thử, kết quả an toàn và cơ chế cập nhật.</p>
+          </article>
+        </div>
+        <div class="compliance-dashboard">
+          <div class="simple-card">
+            <h3>Ma trận ưu tiên kiểm soát</h3>
+            <div class="matrix" style="margin-top: 14px;">
+              <div class="matrix-cell">Data<br/>Quality</div>
+              <div class="matrix-cell">Human<br/>Review</div>
+              <div class="matrix-cell">Privacy<br/>Impact</div>
+              <div class="matrix-cell">Content<br/>Safety</div>
+              <div class="matrix-cell">Security<br/>Attack</div>
+              <div class="matrix-cell">Incident<br/>Response</div>
+            </div>
+          </div>
+          <div class="simple-card">
+            <h3>Nguyên tắc vận hành</h3>
+            <p>Không coi AI là nguồn chân lý tuyệt đối. Mỗi nội dung đầu ra cần có lớp kiểm soát phù hợp: kiểm duyệt tự động, đánh giá của giáo viên/chuyên gia, logging, phản hồi người dùng và cơ chế thu hồi nội dung lỗi.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="data-security">
+        <div class="section-head">
+          <div class="icon-box">🔐</div>
+          <div>
+            <div class="section-kicker">Data & Security</div>
+            <h2>Quản trị dữ liệu và an ninh phải đi trước tốc độ mở rộng</h2>
+          </div>
+        </div>
+        <ul class="checklist">
+          <li><span class="check">✓</span><span><strong>Kiểm soát chất lượng dữ liệu:</strong> xây dựng quy trình phát hiện dữ liệu sai lệch, bị thao túng, bị đầu độc; định kỳ rà soát nguồn tri thức và nội dung sinh ra.</span></li>
+          <li><span class="check">✓</span><span><strong>Giám sát data drift:</strong> theo dõi sự thay đổi của nguồn dữ liệu, chương trình giáo dục, hành vi người dùng và tỷ lệ phản hồi lỗi.</span></li>
+          <li><span class="check">✓</span><span><strong>DPIA:</strong> nếu xử lý dữ liệu cá nhân, cần lập báo cáo đánh giá tác động và chuẩn bị kịch bản kiểm soát dữ liệu trẻ em.</span></li>
+          <li><span class="check">✓</span><span><strong>Bảo mật hệ thống:</strong> mã hóa khi lưu trữ và truyền tải, xác thực đa yếu tố cho quản trị viên, phân quyền truy cập, cảnh báo bất thường.</span></li>
+          <li><span class="check">✓</span><span><strong>Logging tập trung:</strong> lưu log truy vấn, đầu ra, phiên bản mô hình, nguồn dữ liệu, thao tác quản trị và quyết định ghi đè tối thiểu 12 tháng.</span></li>
+        </ul>
+      </section>
+
+      <section class="section" id="transparency">
+        <div class="section-head">
+          <div class="icon-box">👁️</div>
+          <div>
+            <div class="section-kicker">Transparency & Control</div>
+            <h2>Minh bạch, giải trình và giám sát thực chất của con người</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Yêu cầu</th>
+                <th>Cách áp dụng cho FOXAI</th>
+                <th>Bằng chứng cần lưu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Gắn nhãn AI</td>
+                <td>Nội dung do AI tạo hoặc chỉnh sửa phải hiển thị rõ nhãn “Nội dung do AI tạo ra” và có đánh dấu kỹ thuật ở định dạng máy đọc được.</td>
+                <td>Ảnh chụp UI, log metadata, tài liệu thiết kế nhãn.</td>
+              </tr>
+              <tr>
+                <td>Human-in-the-loop</td>
+                <td>Giáo viên, chuyên gia hoặc quản trị viên có quyền kiểm duyệt, ghi đè, thu hồi hoặc tạm dừng nội dung khi phát hiện bất thường.</td>
+                <td>Quy trình phê duyệt, log ghi đè, phân quyền tài khoản.</td>
+              </tr>
+              <tr>
+                <td>Giải trình</td>
+                <td>Cung cấp thông tin về logic vận hành, nguồn dữ liệu tham chiếu, yếu tố ảnh hưởng đến kết quả và giới hạn của mô hình khi có yêu cầu.</td>
+                <td>System Card, Model Card, bản ghi phiên bản, báo cáo kiểm thử.</td>
+              </tr>
+              <tr>
+                <td>XAI module</td>
+                <td>Tích hợp lớp giải thích đầu ra: nguồn tham khảo, lý do đề xuất, mức độ tin cậy và cảnh báo khi nội dung chưa được xác minh.</td>
+                <td>Thiết kế kỹ thuật, demo chức năng, log phản hồi người dùng.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="incident">
+        <div class="section-head">
+          <div class="icon-box">🚨</div>
+          <div>
+            <div class="section-kicker">Incident Response</div>
+            <h2>Xử lý sự cố: nhanh, có bằng chứng và có người chịu trách nhiệm</h2>
+          </div>
+        </div>
+        <p>
+          Khi xảy ra sự cố nghiêm trọng như gây thiệt hại tài sản, xâm phạm quyền con người, lộ dữ liệu cá nhân hoặc phát tán nội dung giáo dục sai lệch ở quy mô lớn, FOXAI cần kích hoạt quy trình ứng cứu sự cố, khoanh vùng ảnh hưởng và báo cáo sơ bộ trong vòng 72 giờ.
+        </p>
+        <div class="notice">
+          <div class="notice-icon">72h</div>
+          <p>Quy trình sự cố cần có 5 bước tối thiểu: phát hiện → cô lập → đánh giá ảnh hưởng → thông báo/báo cáo → khắc phục và phòng ngừa tái diễn.</p>
+        </div>
+      </section>
+
+      <section class="section" id="checklist">
+        <div class="section-head">
+          <div class="icon-box">✅</div>
+          <div>
+            <div class="section-kicker">Action Plan</div>
+            <h2>Checklist triển khai khuyến nghị cho FOXAI</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="simple-card">
+            <h3>Trước thử nghiệm</h3>
+            <ul class="checklist" style="margin-top: 12px;">
+              <li><span class="check">1</span><span>Phân loại rủi ro và xác định cấp độ thử nghiệm.</span></li>
+              <li><span class="check">2</span><span>Lập đề án Sandbox, phạm vi người tham gia và giới hạn hệ thống.</span></li>
+              <li><span class="check">3</span><span>Thiết kế cơ chế phản hồi, báo lỗi và thu hồi nội dung sai.</span></li>
+              <li><span class="check">4</span><span>Chuẩn bị phương án bảo đảm tài chính hoặc bảo hiểm trách nhiệm.</span></li>
+            </ul>
+          </div>
+          <div class="simple-card">
+            <h3>Trước vận hành rộng</h3>
+            <ul class="checklist" style="margin-top: 12px;">
+              <li><span class="check">1</span><span>Hoàn thiện System Card, Model Card và hồ sơ kỹ thuật.</span></li>
+              <li><span class="check">2</span><span>Thiết lập kiểm soát dữ liệu, XAI, HITL và logging tập trung.</span></li>
+              <li><span class="check">3</span><span>Lập DPIA nếu có xử lý dữ liệu cá nhân hoặc dữ liệu trẻ em.</span></li>
+              <li><span class="check">4</span><span>Diễn tập kịch bản sự cố và quy trình báo cáo 72 giờ.</span></li>
+            </ul>
+          </div>
+        </div>
+        <blockquote class="quote" style="margin-top: 18px;">
+          Gợi ý trọng tâm: với hệ thống dùng nguồn dữ liệu không kiểm soát, FOXAI nên ưu tiên “kiểm soát dữ liệu + giải trình đầu ra + giám sát con người” trước khi tối ưu trải nghiệm người dùng hoặc mở rộng quy mô.
+        </blockquote>
+      </section>
+
+      <section class="section" id="sources">
+        <div class="section-head">
+          <div class="icon-box">📚</div>
+          <div>
+            <div class="section-kicker">Tham chiếu</div>
+            <h2>Văn bản pháp lý nguồn</h2>
+          </div>
+        </div>
+        <div class="lead-box">
+          Các văn bản quy phạm pháp luật được tham chiếu trong tài liệu này. Nhấn để mở hoặc tải bản đầy đủ (PDF).
+        </div>
+        <div class="hero-actions" style="margin-top:18px;flex-wrap:wrap;gap:12px;display:flex">
+          <a class="btn primary" href="Luat-134-Luat-Tri-tue-nhan-tao.pdf" target="_blank" rel="noopener">📄 Luật 134 — Luật Trí tuệ nhân tạo</a>
+          <a class="btn" href="QD-33-2026-QD-TTg-Danh-muc-AI-rui-ro-cao.pdf" target="_blank" rel="noopener">📄 QĐ 33/2026/QĐ-TTg — Danh mục AI rủi ro cao</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <strong>FOXAI AI Compliance</strong><br />
+      Landing page tài liệu nội bộ về quản trị rủi ro AI giáo dục. Thiết kế responsive, hỗ trợ dark mode, chế độ đọc và thanh tiến trình đọc.
+    </div>
+  </footer>
+
+  <div class="floating-actions" aria-label="Công cụ nhanh">
+    <div class="float-item">
+      <button class="float-btn" id="topBtn" type="button" aria-label="Lên đầu trang">↑</button>
+      <span class="label">Lên đầu trang</span>
+    </div>
+    <div class="float-item">
+      <button class="float-btn" id="printBtn" type="button" aria-label="In tài liệu">🖨️</button>
+      <span class="label">In / lưu PDF</span>
+    </div>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const body = document.body;
+    const progressBar = document.getElementById('progressBar');
+    const themeBtn = document.getElementById('themeBtn');
+    const readModeBtn = document.getElementById('readModeBtn');
+    const topBtn = document.getElementById('topBtn');
+    const printBtn = document.getElementById('printBtn');
+    const tocToggle = document.getElementById('tocToggle');
+    const tocPanel = document.getElementById('tocPanel');
+    const links = [...document.querySelectorAll('a[href^="#"]')];
+    const sections = [...document.querySelectorAll('section[id]')];
+
+    function updateProgress() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = Math.min(progress, 100) + '%';
+    }
+
+    function setTheme(theme) {
+      root.setAttribute('data-theme', theme);
+      localStorage.setItem('foxai-theme', theme);
+      themeBtn.innerHTML = theme === 'dark' ? '☀️ <span class="btn-text">Light</span>' : '🌙 <span class="btn-text">Dark</span>';
+    }
+
+    function setReadMode(enabled) {
+      body.classList.toggle('read-mode', enabled);
+      localStorage.setItem('foxai-read-mode', enabled ? '1' : '0');
+      readModeBtn.innerHTML = enabled ? '📘 <span class="btn-text">Thoát đọc</span>' : '📖 <span class="btn-text">Chế độ đọc</span>';
+    }
+
+    function updateActiveLink() {
+      const y = window.scrollY + 130;
+      let current = sections[0]?.id;
+      sections.forEach(section => {
+        if (section.offsetTop <= y) current = section.id;
+      });
+
+      document.querySelectorAll('.nav-links a, .toc-panel a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        if (tocPanel.classList.contains('open')) tocPanel.classList.remove('open');
+      });
+    });
+
+    themeBtn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+    });
+
+    readModeBtn.addEventListener('click', () => {
+      setReadMode(!body.classList.contains('read-mode'));
+    });
+
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    printBtn.addEventListener('click', () => window.print());
+
+    if (tocToggle) {
+      tocToggle.addEventListener('click', () => {
+        tocPanel.classList.toggle('open');
+        tocToggle.textContent = tocPanel.classList.contains('open') ? 'Đóng' : 'Mở';
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      updateProgress();
+      updateActiveLink();
+    }, { passive: true });
+
+    const savedTheme = localStorage.getItem('foxai-theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(savedTheme || 'dark');
+    setReadMode(localStorage.getItem('foxai-read-mode') === '1');
+    updateProgress();
+    updateActiveLink();
+  </script>
+</body>
+</html>

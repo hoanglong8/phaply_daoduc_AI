@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Báo Cáo Tuân Thủ Pháp Lý AI — FOXAI</title>
+<meta name="description" content="Phân tích rủi ro và các yêu cầu tuân thủ đối với hệ thống AI giáo dục của FOXAI theo Quyết định 33/2026/QĐ-TTg.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Lora:ital@0;1&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080c; --panel:#0d0f15; --accent:#d9a94e; --glow:#28345a;
+  --ink:#ece6d8; --muted:#9a958a; --measure:40rem;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'Lora',Georgia,serif; font-size:1.12rem; line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+body.reading{ --bg:#f4ecdb; --panel:#efe6d2; --ink:#2c2418; --muted:#6b6350; --accent:#9a6b1f; }
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:60;transition:width .1s}
+#hud{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;
+  padding:.7rem clamp(1rem,4vw,2rem);background:linear-gradient(180deg,var(--bg),transparent);
+  z-index:50;font-family:'Be Vietnam Pro',sans-serif}
+#hud .brand{font-family:'Playfair Display',serif;font-weight:700;letter-spacing:.03em;color:var(--accent);font-size:1rem}
+#hud button{background:none;border:1px solid var(--muted);color:var(--ink);border-radius:999px;
+  padding:.35rem .9rem;font:inherit;font-size:.8rem;cursor:pointer;opacity:.85}
+#hud button:hover{border-color:var(--accent);color:var(--accent);opacity:1}
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:5rem 1.4rem 3rem;
+  background:radial-gradient(circle at 50% 30%,rgba(40,52,90,.5),transparent 60%)}
+.hero .eyebrow{font-family:'Be Vietnam Pro',sans-serif;letter-spacing:.35em;text-transform:uppercase;
+  font-size:.75rem;color:var(--accent);margin-bottom:1.5rem}
+.hero h1{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(2rem,6vw,3.5rem);
+  margin:0 0 1.5rem;line-height:1.2}
+.hero .sub{color:var(--muted);max-width:35rem;font-style:italic}
+.hero .cue{margin-top:3rem;color:var(--accent);font-size:1.4rem;animation:bob 2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+main{max-width:var(--measure);margin:0 auto;padding:2rem clamp(1.2rem,5vw,1.4rem) 6rem}
+main p{margin:0 0 1.3rem;text-align:justify;hyphens:auto}
+.sec-title{font-family:'Playfair Display',serif;color:var(--accent);font-size:1.9rem;
+  margin:4rem 0 1.5rem;text-align:center;scroll-margin-top:4rem}
+h3{font-family:'Playfair Display',serif;color:var(--accent);font-size:1.35rem;margin:2.5rem 0 1rem;font-weight:600}
+.divider{text-align:center;font-family:'Be Vietnam Pro',sans-serif;letter-spacing:.25em;
+  text-transform:uppercase;font-size:.75rem;color:var(--muted);margin:2.5rem 0;
+  display:flex;align-items:center;gap:1rem;justify-content:center}
+.divider::before,.divider::after{content:"";height:1px;width:2.5rem;background:var(--muted);opacity:.5}
+.caption{text-align:center;color:var(--muted);font-style:italic;font-size:.95rem;margin:1.2rem 0}
+.verse{font-style:italic;text-align:justify;color:#f0e7d0;
+  background:var(--panel);border-left:2px solid var(--accent);border-radius:4px;
+  padding:1.2rem 1.5rem;line-height:1.8;margin-bottom:2rem}
+body.reading .verse{color:#3a2f1e}
+.item-block{margin-bottom:1.8rem;padding-left:1rem;border-left:1px solid rgba(217,169,78,0.25)}
+.item-title{font-family:'Be Vietnam Pro',sans-serif;font-weight:600;color:var(--accent);font-size:1.05rem;margin-bottom:0.4rem}
+/* TOC overlay */
+#toc{position:fixed;inset:0;background:rgba(5,6,10,.98);z-index:70;
+  transform:translateX(100%);transition:transform .35s ease;overflow:auto;
+  padding:4.5rem clamp(1.4rem,6vw,3rem) 3rem}
+#toc.open{transform:translateX(0)}
+#toc h3{font-family:'Playfair Display',serif;color:var(--accent);margin-top:0}
+#toc ol{list-style:none;padding:0;margin:0;max-width:40rem}
+#toc li{margin:.2rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+#toc a{color:var(--ink);text-decoration:none;display:block;padding:.7rem .2rem;font-family:'Be Vietnam Pro',sans-serif;font-size:.95rem}
+#toc a:hover{color:var(--accent)}
+#toc .close{position:absolute;top:1rem;right:1.4rem}
+footer{text-align:center;color:var(--muted);font-family:'Be Vietnam Pro',sans-serif;
+  font-size:.8rem;padding:2rem 1rem 4rem;border-top:1px solid rgba(255,255,255,.08);max-width:var(--measure);margin:0 auto}
+@media print{#hud,#prog,#toc,.hero .cue{display:none}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<header id="hud">
+  <span class="brand">FOXAI Compliance</span>
+  <span>
+    <button id="btnRead">Chế độ đọc</button>
+    <button id="btnToc">☰ Mục lục</button>
+  </span>
+</header>
+
+<section class="hero">
+  <p class="eyebrow">Quyết định 33/2026/QĐ-TTg</p>
+  <h1>Báo Cáo Tuân Thủ Pháp Lý & Quản Trị Rủi Ro Hệ Thống AI</h1>
+  <p class="sub">Dành cho dự án nghiên cứu phát triển mô hình tự học sử dụng dữ liệu không kiểm soát tại FOXAI</p>
+  <div class="cue">❧</div>
+</section>
+
+<nav id="toc">
+  <button class="close" id="btnCloseToc" style="background:none;border:1px solid var(--muted);color:var(--ink);border-radius:999px;padding:.35rem .9rem;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif">✕ Đóng</button>
+  <h3>Mục lục nội dung</h3>
+  <ol>
+    <li><a href="#sec1">1. Phân tích các rủi ro chính</a></li>
+    <li><a href="#sec2">2. Yêu cầu tuân thủ trước khi triển khai (Sandbox)</a></li>
+    <li><a href="#sec3">3. Yêu cầu tuân thủ khi vận hành diện rộng</a></li>
+    <li><a href="#sec4">4. Quy trình xử lý sự cố & Lời khuyên</a></li>
+  </ol>
+</nav>
+
+<main>
+<p class="caption">- TÀI LIỆU LƯU HÀNH NỘI BỘ -</p>
+<p class="divider">KHUNG PHÁP LÝ & CHIẾN LƯỢC QUẢN TRỊ</p>
+
+<div class="verse">
+  <strong>Định vị hệ thống:</strong> Hệ thống AI cung cấp nội dung tự học theo chương trình giáo dục sử dụng nguồn dữ liệu không kiểm soát mà FOXAI đang nghiên cứu đã được xác định chính xác là <strong>hệ thống AI có rủi ro cao</strong> (STT 1, Lĩnh vực I - Giáo dục) theo Quyết định 33/2026/QĐ-TTg. Do đặc thù sử dụng "nguồn dữ liệu không kiểm soát", hệ thống này tiềm ẩn nhiều nguy cơ về tính chính xác và an toàn đạo đức, đòi hỏi FOXAI phải tuân thủ nghiêm ngặt các quy định từ giai đoạn thử nghiệm đến vận hành diện rộng.
+</div>
+
+<h2 id="sec1" class="sec-title">1. PHÂN TÍCH CÁC RỦI RO CHÍNH</h2>
+<p>Việc sử dụng nguồn dữ liệu "không kiểm soát" trong lĩnh vực giáo dục dẫn đến các rủi ro đặc thù mang tính hệ thống như sau:</p>
+
+<div class="item-block">
+  <div class="item-title">Nội dung sai lệch hoặc gây hại</div>
+  <p>Dữ liệu đầu vào không được thẩm định có thể tạo ra kiến thức sai sự thật, gây nhầm lẫn nghiêm trọng cho người học hoặc chứa các nội dung mang tính kỳ thị, phân biệt đối xử, gây tác động tiêu cực đến bản sắc văn hóa Việt Nam.</p>
+</div>
+
+<div class="item-block">
+  <div class="item-title">Xâm phạm quyền riêng tư và trẻ em</div>
+  <p>Trong trường hợp đối tượng người học là trẻ em, rủi ro về mặt thu thập và xử lý dữ liệu cá nhân nhạy cảm là vô cùng lớn. Luật AI quy định giáo dục là lĩnh vực thiết yếu, có tác động trực tiếp, sâu sắc đến tính mạng, sức khỏe và đời sống tinh thần của con người.</p>
+</div>
+
+<div class="item-block">
+  <div class="item-title">An ninh hệ thống</div>
+  <p>Hệ thống đối mặt với nguy cơ bị đầu độc dữ liệu (data poisoning) từ bên ngoài hoặc các cuộc tấn công tiêm lệnh (prompt injection) nhằm mục đích thao túng kết quả đầu ra và định hướng giáo dục sai lệch.</p>
+</div>
+
+<div class="item-block">
+  <div class="item-title">Thiên lệch thuật toán</div>
+  <p>Do nền tảng dữ liệu không được kiểm soát chặt chẽ, thuật toán có thể tự động đưa ra các khuyến nghị học tập mang tính định kiến hoặc thiên lệch, không bảo đảm được tính công bằng và bao trùm trong giáo dục.</p>
+</div>
+
+<h2 id="sec2" class="sec-title">2. YÊU CẦU TRƯỚC KHI TRIỂN KHAI THÍ ĐIỂM (SANDBOX)</h2>
+<p>Vì đây là hệ thống được phân loại ở cấp độ rủi ro cao, FOXAI bắt buộc phải thực hiện thử nghiệm trong Cơ chế thử nghiệm có kiểm soát (Sandbox) với các nghĩa vụ cụ thể:</p>
+
+<div class="item-block">
+  <div class="item-title">Xác định cấp độ thử nghiệm phù hợp</div>
+  <p>Nếu hệ thống có hành vi xử lý dữ liệu của trẻ em hoặc thực hiện kết nối trực tiếp với các hạ tầng thông tin quốc gia, FOXAI phải thực hiện đăng ký thử nghiệm ở <strong>Cấp độ 3</strong> và nộp hồ sơ chính thức cho Bộ Công an thẩm định. Đối với các trường hợp còn lại, hồ sơ sẽ được nộp cho Bộ quản lý chuyên ngành (Bộ Giáo dục & Đào tạo) hoặc Ủy ban Nhân dân cấp tỉnh để xem xét cho <strong>Cấp độ 1 và Cấp độ 2</strong>.</p>
+</div>
+
+<div class="item-block">
+  <div class="item-title">Xây dựng hồ sơ đăng ký thử nghiệm</div>
+  <p>Thành phần hồ sơ bắt buộc phải bao gồm: Đơn đề nghị theo Mẫu AI03a; Đề án thử nghiệm chi tiết (mô tả kiến trúc hệ thống, mục tiêu thử nghiệm, phương án quản lý và cô lập rủi ro); cùng các tài liệu pháp lý chứng minh năng lực nhân sự và hạ tầng kỹ thuật đáp ứng.</p>
+</div>
+
+<div class="item-block">
+  <div class="item-title">Áp dụng biện pháp bảo đảm tài chính</div>
+  <p>Do đặc thù hệ thống có khả năng gây ra các thiệt hại đáng kể (ví dụ như lan truyền sai lệch kiến thức trên quy mô lớn), FOXAI có nghĩa vụ phải áp dụng bảo hiểm trách nhiệm dân sự hoặc các biện pháp bảo đảm tài chính tương đương trong toàn bộ phạm vi và thời gian thử nghiệm.</p>
+</div>
+
+<div class="item-block">
+  <div class="item-title">Minh bạch thông tin với người tham gia</div>
+  <p>Doanh nghiệp phải thực hiện cơ chế thông báo đầy đủ, rõ ràng và công khai về các rủi ro tiềm ẩn có thể phát sinh cho tất cả người dùng tham gia vào quá trình thử nghiệm hệ thống.</p>
+</div>
+
+<h2 id="sec3" class="sec-title">3. YÊU CẦU KHI TRIỂN KHAI DIỆN RỘNG (VẬN HÀNH CHÍNH THỨC)</h2>
+<p>Khi kết thúc giai đoạn thử nghiệm Sandbox và chuyển sang đưa vào vận hành, khai thác thương mại diện rộng, FOXAI phải hoàn tất đầy đủ các nhóm nghĩa vụ pháp lý sau:</p>
+
+<h3 id="sec3a">a. Về Hồ sơ và Đánh giá sự phù hợp</h3>
+<div class="item-block">
+  <div class="item-title">Tự đánh giá sự phù hợp</div>
+  <p>Thực hiện nghiêm túc theo quy định tại điểm b khoản 2 Điều 13 Luật AI. FOXAI phải chủ động lập Hồ sơ kỹ thuật và tự chịu trách nhiệm hoàn toàn trước pháp luật về kết quả đánh giá đáp ứng các yêu cầu về quản lý rủi ro, chất lượng nguồn dữ liệu và tính minh bạch thuật toán.</p>
+</div>
+<div class="item-block">
+  <div class="item-title">Thông báo kết quả phân loại rủi ro</div>
+  <p>Doanh nghiệp có nghĩa vụ thông báo kết quả phân loại rủi ro hệ thống cho Bộ Khoa học và Công nghệ thông qua Cổng thông tin điện tử một cửa về AI để được thẩm định và cấp Mã định danh hệ thống AI chính thức.</p>
+</div>
+<div class="item-block">
+  <div class="item-title">Duy trì Hồ sơ kỹ thuật liên tục</div>
+  <p>Lưu giữ, cập nhật liên tục Thẻ hệ thống (System Card) và Thẻ mô hình (Model Card). Các tài liệu này phải mô tả chi tiết kiến trúc mô hình, dữ liệu huấn luyện, các giới hạn kỹ thuật và kết quả kiểm thử an toàn trong suốt vòng đời vận hành hệ thống.</p>
+</div>
+
+<h3 id="sec3b">b. Về Quản trị Dữ liệu và An ninh</h3>
+<div class="item-block">
+  <div class="item-title">Kiểm soát chất lượng nguồn dữ liệu</div>
+  <p>Xây dựng và duy trì quy trình tự động kết hợp thủ công để kịp thời phát hiện, xử lý các dữ liệu bị sai lệch, bị thao túng hoặc có dấu hiệu bị đầu độc; đồng thời liên tục giám sát hiện tượng trôi dữ liệu (data drift) theo thời gian.</p>
+</div>
+<div class="item-block">
+  <div class="item-title">Lập hồ sơ đánh giá tác động quyền riêng tư (DPIA)</div>
+  <p>Trong trường hợp hệ thống có xử lý dữ liệu cá nhân của người dùng, FOXAI bắt buộc phải lập Báo cáo đánh giá tác động xử lý dữ liệu cá nhân theo Mẫu số 10 và nộp về Cục An ninh mạng và Phòng, chống tội phạm sử dụng công nghệ cao (A05) - Bộ Công an.</p>
+</div>
+<div class="item-block">
+  <div class="item-title">Bảo mật hệ thống nghiêm ngặt</div>
+  <p>Áp dụng các tiêu chuẩn mã hóa dữ liệu tiên tiến tại nơi lưu trữ và trên đường truyền tải; triển khai cơ chế xác thực đa nhân tố (MFA) đối với toàn bộ tài khoản quản trị viên; thiết lập hệ thống lưu vết (Logging) tập trung với thời gian lưu trữ tối thiểu là 12 tháng.</p>
+</div>
+
+<h3 id="sec3c">c. Về Trách nhiệm Minh bạch và Kiểm soát</h3>
+<div class="item-block">
+  <div class="item-title">Gắn nhãn nội dung AI công khai</div>
+  <p>Mọi nội dung giáo dục, kiến thức do hệ thống AI tự động tạo ra hoặc tham gia chỉnh sửa đều phải được gắn nhãn hiển thị một cách rõ ràng cho người dùng nhận biết ("Nội dung do AI tạo ra"), đồng thời phải được đánh dấu kỹ thuật ẩn dưới định dạng máy có thể đọc được (metadata/watermark).</p>
+</div>
+<div class="item-block">
+  <div class="item-title">Giám sát thực chất bởi con người (Human-in-the-loop)</div>
+  <p>Thiết lập một cơ chế quản trị cho phép những người có thẩm quyền chuyên môn có quyền ghi đè, điều chỉnh trực tiếp hoặc tạm dừng ngay lập tức các quyết định của hệ thống AI khi phát hiện các dấu hiệu bất thường hoặc sai lệch kiến thức.</p>
+</div>
+<div class="item-block">
+  <div class="item-title">Cơ chế giải trình thuật toán</div>
+  <p>Sẵn sàng các phương án và tài liệu kỹ thuật để cung cấp thông tin giải thích một cách minh bạch về logic vận hành cũng như các yếu tố trọng số ảnh hưởng trực tiếp đến kết quả đầu ra khi có yêu cầu kiểm tra từ cơ quan chức năng.</p>
+</div>
+
+<h2 id="sec4" class="sec-title">4. QUY TRÌNH XỬ LÝ SỰ CỐ & LỜI KHUYÊN CHIẾN LƯỢC</h2>
+<div class="item-block">
+  <div class="item-title">Xử lý sự cố khẩn cấp</div>
+  <p>Trong quá trình vận hành thực tế, nếu phát sinh bất kỳ sự cố nghiêm trọng nào (chẳng hạn như gây thiệt hại về mặt tài sản, xâm phạm nghiêm trọng quyền con người hoặc lan truyền thông tin sai lệch diện rộng), FOXAI phải thực hiện báo cáo sơ bộ bằng văn bản gửi cơ quan quản lý có thẩm quyền trong vòng <strong>72 giờ</strong> kể từ khi phát hiện sự cố.</p>
+</div>
+
+<div class="verse">
+  <strong>💡 Lời khuyên chiến lược cho FOXAI:</strong> Do đặc thù hệ thống sử dụng cốt lõi là "nguồn dữ liệu không kiểm soát", FOXAI nên đặc biệt ưu tiên tích hợp module Giải trình tính minh bạch (XAI - Explainable AI) và thiết lập bộ tiêu chí chất lượng dữ liệu cực kỳ nghiêm ngặt ngay từ khâu thiết kế kiến trúc ban đầu (áp dụng nguyên tắc <strong>Compliance-by-Design</strong>). Giải pháp này sẽ giúp tối ưu hóa khả năng kiểm soát và giảm thiểu tối đa các rủi ro pháp lý liên quan đến nghĩa vụ bồi thường thiệt hại trong tương lai.
+</div>
+</main>
+
+<footer>
+  <p>© 2026 FOXAI Native Project. Tài liệu hướng dẫn và tuân thủ pháp lý AI.</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const btnRead = document.getElementById('btnRead');
+    const btnToc = document.getElementById('btnToc');
+    const btnCloseToc = document.getElementById('btnCloseToc');
+    const toc = document.getElementById('toc');
+    const prog = document.getElementById('prog');
+
+    // Chế độ đọc (Toggle Reading Mode)
+    btnRead.addEventListener('click', () => {
+        document.body.classList.toggle('reading');
+        if (document.body.classList.contains('reading')) {
+            btnRead.textContent = 'Chế độ tối';
+        } else {
+            btnRead.textContent = 'Chế độ đọc';
+        }
+    });
+
+    // Quản lý Mục lục (TOC Control)
+    btnToc.addEventListener('click', () => toc.classList.add('open'));
+    btnCloseToc.addEventListener('click', () => toc.classList.remove('open'));
+    
+    // Đóng mục lục khi nhấn vào link điều hướng
+    toc.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => toc.classList.remove('open'));
+    });
+
+    // Thanh tiến trình cuộn trang (Scroll Progress Bar)
+    window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        prog.style.width = scrolled + '%';
+    });
+});
+</script>
+</body>
+</html>
